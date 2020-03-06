@@ -31,7 +31,7 @@ $ ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 $ docker-compose --version
 $ apt install python3-pip
 $ pip3 install -r requirements.txt
-
+$ sysctl -w vm.max_map_count=262144
 ```
 
 
