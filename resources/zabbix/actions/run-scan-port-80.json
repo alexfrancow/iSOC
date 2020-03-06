@@ -9,8 +9,7 @@
        		"def_shortdata": "{TRIGGER.NAME}: {TRIGGER.STATUS}",
        		"def_longdata": "{TRIGGER.NAME}: {TRIGGER.STATUS}\r\nLast value: {ITEM.LASTVALUE}\r\n\r\n{TRIGGER.URL}",
        		"filter": {
-       			"evaltype": 3,
-			"formula": "C and (A or B)",
+       			"evaltype": 2,
        			"conditions": [{
        				"conditiontype": 3,
        				"operator": 2,
@@ -22,12 +21,6 @@
                                 "operator": 2,
                                 "value": "Port 443/",
                                 "formulaid": "B"
-                        },
-			{
-                                "conditiontype": 2,
-                                "operator": 0,
-                                "value": "16832",
-				"formulaid": "C"
                         }]
        		},
        		"operations": [{
