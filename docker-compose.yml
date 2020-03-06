@@ -1,0 +1,70 @@
+version: '2'
+services:
+  elk:
+    image: sebp/elk
+    container_name: elk
+    volumes:
+      - ./volumes/elasticsearch:/usr/share/elasticsearch/data
+    environment:
+      #- "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      #- ES_HEAP_SIZE="2g" 
+      #- LS_HEAP_SIZE="1g"
+      - ES_CONNECT_RETRY=300
+    ports:
+      - 5601:5601
+      - 5044:5044
+      - 9200:9200
+    volumes:
+      - ./volumes/elk-data:/var/lib/elasticsearch
+    networks:
+      esnet:
+        aliases:
+          - elasticsearch.local
+
+  openvas:
+    image: mikesplain/openvas
+    container_name: openvas
+    environment:
+      - PUBLIC_HOSTNAME=192.168.1.13
+      #- OV_PASSWORD=abc1234.
+    ports:
+      - 443:443
+      - 9390:9390
+    volumes:
+      - ./volumes/openvas/:/var/lib/openvas/mgr/
+
+  zabbix-appliance:
+    image: zabbix/zabbix-appliance
+    container_name: zabbix
+    environment:
+      - ZBX_STARTDISCOVERERS=5
+      - ZBX_TIMEOUT=30
+    ports:
+      - 80:80
+      - 10051:10051
+    volumes:
+      - ./resources/zabbix/externalscripts/tcp-discovery.sh:/usr/lib/zabbix/externalscripts/tcp-discovery.sh
+      - ./resources/zabbix/externalscripts/openvas.py:/usr/lib/zabbix/externalscripts/openvas.py
+      - ./volumes/zabbix/mysql:/var/lib/mysql
+
+  vulnwhisperer:
+    image: hasecuritysolutions/vulnwhisperer:latest
+    container_name: vulnwhisperer
+    entrypoint: [
+                  "vuln_whisperer",
+                  "-c",
+                  "/opt/VulnWhisperer/vulnwhisperer.ini",
+                  "-s",
+                  "openvas"
+    ]
+    volumes:
+      - ./volumes/vulnwhisperer/data/:/opt/VulnWhisperer/data
+      - ./resources/vulnwhisperer/vulnwhisperer.ini:/opt/VulnWhisperer/vulnwhisperer.ini
+    network_mode: host
+
+volumes:
+  esdata1:
+    driver: local
+
+networks:
+  esnet:

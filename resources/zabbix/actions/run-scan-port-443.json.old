@@ -1,0 +1,69 @@
+       {
+       	"jsonrpc": "2.0",
+       	"method": "action.create",
+       	"params": {
+       		"name": "Run Scan port 443",
+       		"eventsource": 0,
+       		"status": 0,
+       		"esc_period": "2m",
+       		"def_shortdata": "{TRIGGER.NAME}: {TRIGGER.STATUS}",
+       		"def_longdata": "{TRIGGER.NAME}: {TRIGGER.STATUS}\r\nLast value: {ITEM.LASTVALUE}\r\n\r\n{TRIGGER.URL}",
+       		"filter": {
+       			"evaltype": 0,
+       			"conditions": [{
+                                "conditiontype": 3,
+                                "operator": 2,
+                                "value": "Port 443/",
+				"formulaid": "B"
+                        },
+			{
+                                "conditiontype": 2,
+                                "operator": 0,
+                                "value": "16742",
+				"formulaid": "C"
+                        }]
+       		},
+       		"operations": [{
+       			"actionid": 8,
+       			"operationtype": 1,
+       			"esc_period": "0s",
+       			"esc_step_from": 1,
+       			"esc_step_to": 1,
+       			"mediatype": 0,
+       			"evaltype": 0,
+       			"opcommand": {
+       				"type": 0,
+       				"scriptid": 0,
+       				"execute_on": 1,
+       				"port": "",
+       				"authtype": 0,
+       				"command": "python /usr/lib/zabbix/externalscripts/openvas.py -i {HOST.NAME} -m 'Full and fast'",
+       				"username": "",
+       				"password": "",
+       				"publickey": "",
+       				"privatekey": "",
+       				"operationid": 1
+       			},
+       			"opcommand_hst": [{
+       				"opcommand_hstid": 2,
+       				"operationid": 12,
+       				"hostid": 0
+       			}]
+       		}],
+       		"recovery_operations": [{
+       			"operationtype": "11",
+       			"opmessage": {
+       				"default_msg": 1
+       			}
+       		}],
+       		"acknowledge_operations": [{
+       			"operationtype": "12",
+       			"opmessage": {
+       				"message": "Custom update operation message body",
+       				"subject": "Custom update operation message subject"
+       			}
+       		}]
+       	},
+       	"auth": "token",
+       	"id": 1
+       }

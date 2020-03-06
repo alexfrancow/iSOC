@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>4.4</version>
+    <date>2020-02-20T17:40:20Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Main</template>
+            <name>Main</name>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <items>
+                <item>
+                    <name>Conectividad con el equipo</name>
+                    <type>SIMPLE</type>
+                    <key>icmpping[,3,,,]</key>
+                    <triggers>
+                        <trigger>
+                            <expression>{max(30)}=1</expression>
+                            <name>El equipo lleva 24 horas levantado</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+        </template>
+    </templates>
+</zabbix_export>
