@@ -2,7 +2,7 @@
 
 Deploy an "illegal" SOC (Security Operations Center) to audit all the servers in your city in a few minutes. 
 
-[![](https://img.shields.io/badge/twitter-@alexfrancow-00aced?style=flat-square&logo=twitter&logoColor=white)](https://twitter.com/alexfrancow) [![](https://img.shields.io/badge/linkedin-@alexfrancow-0084b4?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/alexfrancow)
+[![](https://img.shields.io/badge/twitter-@alexfrancow-00aced?style=flat-square&logo=twitter&logoColor=white)](https://twitter.com/alexfrancow) [![](https://img.shields.io/badge/linkedin-@alexfrancow-0084b4?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/alexfrancow) [![](https://img.shields.io/badge/linkedin-@jlopezprado-0084b4?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jlopezprado/)
 
 ## Requirements
 
@@ -14,6 +14,7 @@ Tested on:
 
 ```bash
 $ sudo apt update
+# Docker
 $ sudo apt install apt-transport-https ca-certificates curl gnupg2 software-properties-common
 $ curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
@@ -25,12 +26,16 @@ $ sudo usermod -aG docker ${USER}
 $ su - ${USER}
 $ id -nG
 $ sudo usermod -aG docker username
+$ docker -v
+# Docker-compose
 $ curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 $ chmod +x /usr/local/bin/docker-compose
 $ ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 $ docker-compose --version
+# Python libraries
 $ apt install python3-pip
 $ pip3 install -r requirements.txt
+# Virtual memory to Elasticsearch
 $ sysctl -w vm.max_map_count=262144
 ```
 

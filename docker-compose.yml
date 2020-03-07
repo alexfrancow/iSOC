@@ -59,8 +59,10 @@ services:
                   "-c",
                   "/opt/VulnWhisperer/vulnwhisperer.ini",
                   "-s",
-                  "openvas"
+                  "openvas;"
     ]
+
+    #restart: always
     volumes:
       - ./resources/vulnwhisperer/data_from_openvas/:/opt/VulnWhisperer/data
       # Archivo de configuracion para que vulnwhisperer sepa donde tiene que dejar los reportes.

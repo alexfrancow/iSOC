@@ -37,7 +37,7 @@
        				"execute_on": 1,
        				"port": "",
        				"authtype": 0,
-       				"command": "python /usr/lib/zabbix/externalscripts/openvas.py -i {HOST.NAME} -m 'Full and fast'",
+       				"command": "nohup python /usr/lib/zabbix/externalscripts/openvas.py -i {HOST.NAME} -m 'Full and fast' &",
        				"username": "",
        				"password": "",
        				"publickey": "",
