@@ -17,9 +17,7 @@ services:
     volumes:
       - ./volumes/elk-data:/var/lib/elasticsearch
       - ./resources/vulnwhisperer/vulnmod_logstash.conf:/etc/logstash/conf.d/vulnmod_logstash.conf
-      # Vulnwhisperer output data, los reportes que trae vulnwhisperer de openvas los deja en ./resources/vulnwhisperer/data_from_openvas/
-      # luego el logstash de elk esta configurado para pillar los logs de la carpeta /opt/VulnWhisperer/data/openvas/:
-      - ./resources/vulnwhisperer/data_from_openvas/:/opt/VulnWhisperer/data/openvas/
+      - ./volumes/vulnwhisperer/data/:/opt/VulnWhisperer/data/
     networks:
       esnet:
         aliases:
@@ -57,15 +55,10 @@ services:
     entrypoint: [
                   "vuln_whisperer",
                   "-c",
-                  "/opt/VulnWhisperer/vulnwhisperer.ini",
-                  "-s",
-                  "openvas;"
+                  "/opt/VulnWhisperer/vulnwhisperer.ini"
     ]
-
-    #restart: always
     volumes:
-      - ./resources/vulnwhisperer/data_from_openvas/:/opt/VulnWhisperer/data
-      # Archivo de configuracion para que vulnwhisperer sepa donde tiene que dejar los reportes.
+      - ./volumes/vulnwhisperer/data/:/opt/VulnWhisperer/data/
       - ./resources/vulnwhisperer/vulnwhisperer.ini:/opt/VulnWhisperer/vulnwhisperer.ini
     network_mode: host
 
