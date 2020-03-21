@@ -72,7 +72,7 @@ Creating vulnwhisperer ... done
 
 ## Options
 
-If you want to import a new template, you can place it in "resources/zabbix/templates/".
+- **Custom Zabbix Actions/Templates**: If you want to edit or import a new template or action, you can place it in "resources/zabbix/templates/" or "resources/zabbix/actions/".
 
 
 ## Troubleshooting
@@ -140,11 +140,12 @@ $ docker logs -f openvas
 
 ## Errors
 
-If you get an openvas login error when it starts, you must delete the 'volumes/openvas' directory.
+If you get an openvas login error when it starts, you must delete the files inside 'volumes/openvas' directory.
 
 
-## Documentation
+## External Documentation
 
 - ELK https://elk-docker.readthedocs.io/
-- OpenVas https://hub.docker.com/r/mikesplain/openvas/dockerfile
+- Openvas https://hub.docker.com/r/mikesplain/openvas/dockerfile
 - Zabbix https://www.zabbix.com/documentation/current/manual
+- Vulnwhisperer https://github.com/HASecuritySolutions/VulnWhisperer/wiki/docker-compose-Instructions
