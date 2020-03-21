@@ -123,6 +123,11 @@ We can see in kibana how the data has been parsed with a previously created inde
 ```bash
 logstash-vulnwhisperer-*
 ```
+You can create it with:
+
+```bash
+curl -f -XPOST -H 'Content-Type: application/json' -H 'kbn-xsrf: anything' 'http://192.168.1.13:5601/api/saved_objects/index-pattern/logstash-*' '-d{"attributes":{"title":"logstash-*"}}'
+```
 
 If you don't have any data to can create an Index you can refresh the logs manually with logstash use, first of all you must have logs in "/opt/VulnWhisperer/data/" directory and execute:
 
