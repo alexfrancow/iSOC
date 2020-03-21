@@ -35,10 +35,11 @@ $ docker-compose --version
 # Python libraries
 $ apt install python3-pip
 $ pip3 install -r requirements.txt
+# System requirements
+$ apt install nmap masscan
 # Virtual memory to Elasticsearch
 $ sysctl -w vm.max_map_count=262144
 ```
-
 
 ## Getting started
 
