@@ -43,6 +43,8 @@ $ sysctl -w vm.max_map_count=262144
 ## Getting started
 
 ```bash
+$ cat data/maxmind/database.tar.gz.parta* > data/maxmind/database.tar.gz
+$ tar -zxvf data/maxmind/database.tar.gz
 $ python3 Main.py
 [i] Checking requirements..
 [i] Starting containers..
