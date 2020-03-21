@@ -43,22 +43,31 @@ $ sysctl -w vm.max_map_count=262144
 ## Getting started
 
 ```bash
-$ docker-compose up
-$ python Main.py
-[i] Checking requirements.
-    [*] Masscan OK
+$ python3 Main.py
+[i] Checking requirements..
+[i] Starting containers..
+[i] Logs: $ docker-compose logs -f
+Creating network "isoc_esnet" with the default driver
+Creating network "isoc_default" with the default driver
+Creating elk           ... done
+Creating openvas       ... done
+Creating zabbix        ... done
+Creating vulnwhisperer ... done
 [i] Waiting for zabbix to be up..
     [*] Zabbix is up!
+    [*] Installing requirements
+[i] Waiting for kibana to be up..
+    [*] Kibana is up!
 [i] Importing templates..
-    resources/zabbix/templates/main-template.xml
     resources/zabbix/templates/template_app_service_ports.xml
+    resources/zabbix/templates/main-template.xml
 [i] Importing actions..
-    {'jsonrpc': '2.0', 'result': {'actionids': [7]}, 'id': 1}
+    resources/zabbix/actions/run-scan-port-80.json
+[i] Creating openvas index..
 [i] Getting IPs from maxmind database
 [i] Importing hosts..
-    192.168.0.179
+    192.168.1.13
     ...
-
 ```
 
 ## Options
