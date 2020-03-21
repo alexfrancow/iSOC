@@ -145,7 +145,7 @@ If you get an openvas login error when it starts, you must delete the files insi
 
 ## External Documentation
 
-- ELK https://elk-docker.readthedocs.io/
-- Openvas https://hub.docker.com/r/mikesplain/openvas/dockerfile
-- Zabbix https://www.zabbix.com/documentation/current/manual
-- Vulnwhisperer https://github.com/HASecuritySolutions/VulnWhisperer/wiki/docker-compose-Instructions
+- ELK: https://elk-docker.readthedocs.io/
+- Openvas: https://hub.docker.com/r/mikesplain/openvas/dockerfile
+- Zabbix: https://www.zabbix.com/documentation/current/manual
+- Vulnwhisperer: https://github.com/HASecuritySolutions/VulnWhisperer/wiki/docker-compose-Instructions
