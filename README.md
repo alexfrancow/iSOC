@@ -169,6 +169,10 @@ fetch http://dl-cdn.alpinelinux.org/alpine/v3.10/community/x86_64/APKINDEX.tar.g
 (3/3) Installing nmap (7.70-r4)
 Executing busybox-1.30.1-r3.trigger
 OK: 346 MiB in 119 packages
+
+# And
+$ docker logs -f zabbix | grep discover
+zabbix              |    346:20200321:172546.188 discovery rule "46.24.171.21:tcp-discovery.sh[{HOST.CONN}]" became supported
 ```
 
 ### Zabbix zbx_mem_malloc(): out of memory 
