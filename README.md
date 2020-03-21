@@ -130,6 +130,21 @@ If you don't have any data to can create an Index you can refresh the logs manua
 $ /opt/logstash/bin/logstash -f /etc/logstash/conf.d/vulnmod_logstash.conf --config.reload.automatic
 ```
 
+#### Add Geo information
+
+In the "/etc/logstash/conf.d/vulnmod_logstash.conf" file you can add the geoip function to localize your asset, in our case the asset is the IP:
+
+```bash
+    grok {
+        match => { "path" => "openvas_scan_%{DATA:scan_id}_%{INT:last_updated}.json$" }
+        tag_on_failure => []
+    }
+
+    geoip {
+        source => "asset"
+    }
+```
+
 ### Zabbix Discover:
 
 ```bash
