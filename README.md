@@ -160,6 +160,14 @@ $ docker ps
 $ docker logs -f zabbix | grep discover
 ```
 
+### Zabbix zbx_mem_malloc(): out of memory 
+
+My city has a lot of hosts >10805 found and it crashes, you must increase the CacheSize on ZABBIX container with this variable in the "docker-compose.yml":
+
+```bash
+ZBX_CACHESIZE=1000M
+```
+
 ### Openvas NVT:
 
 ```bash
