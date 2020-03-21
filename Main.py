@@ -10,6 +10,7 @@ import re
 import os
 import json
 import threading
+import sys
 import glob
 
 from pyzabbix import ZabbixAPI
@@ -23,6 +24,17 @@ import numpy as np
 parser = argparse.ArgumentParser(description='PONER DESCRIPCION')
 parser.add_argument('-d', '--dataset', help='Only adds a new city into ZABBIX', type=str, action="store")
 args = parser.parse_args()
+
+
+
+def kibana_create_openvas_index(kibana_ip):
+	headers = {
+    		'Content-Type': 'application/json',
+    		'kbn-xsrf': 'anything',
+	}
+
+	data = '{"attributes":{"title":"logstash-*"}}'
+	requests.post(kibana_ip+'/api/saved_objects/index-pattern/logstash-*', headers=headers, data=data)
 
 
 def zabbix_upload_templates():
@@ -237,7 +249,7 @@ except FileExistsError as err:
 
 city = config['Common']['city']
 zabbix_ip = config['Zabbix']['ip']
-
+kibana_ip = config['Elk']['kibana_ip']
 
 print("[i] Checking requirements..")
 requirements()
@@ -255,11 +267,23 @@ while True:
 			zabbix_requirements()
 			break
 
-	except ValueError as e:
-		print(e)
+	except:
+		pass
+	time.sleep(5)
+
+while True:
+	print("[i] Waiting for kibana to be up..")
+	try:
+		response = requests.get(kibana_ip)
+		if "kibanaLoaderWrap" in response.content.decode('utf-8'):
+			print("    [*] Kibana is up!")
+			break
+
+	except:
 		pass
 
 	time.sleep(5)
+
 
 zapi = ZabbixAPI(zabbix_ip)
 zapi.login("Admin", "zabbix")
@@ -269,6 +293,9 @@ zabbix_upload_templates()
 
 print("[i] Importing actions..")
 zabbix_create_actions()
+
+print("[i] Creating openvas index..")
+kibana_create_openvas_index(kibana_ip)
 
 print("[i] Getting IPs from maxmind database")
 #ips = hosts_up(city)
