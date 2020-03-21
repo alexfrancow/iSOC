@@ -158,6 +158,17 @@ In the "/etc/logstash/conf.d/vulnmod_logstash.conf" file you can add the geoip f
 ```bash
 $ docker ps
 $ docker logs -f zabbix | grep discover
+
+# The normal error
+$ docker exec -it zabbix bash
+bash-5.0# apk add nmap
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.10/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.10/community/x86_64/APKINDEX.tar.gz
+(1/3) Installing lua5.3-libs (5.3.5-r2)
+(2/3) Installing libpcap (1.9.1-r0)
+(3/3) Installing nmap (7.70-r4)
+Executing busybox-1.30.1-r3.trigger
+OK: 346 MiB in 119 packages
 ```
 
 ### Zabbix zbx_mem_malloc(): out of memory 
