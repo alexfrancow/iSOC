@@ -127,7 +127,7 @@ logstash-vulnwhisperer-*
 If you don't have any data to can create an Index you can refresh the logs manually with logstash use, first of all you must have logs in "/opt/VulnWhisperer/data/" directory and execute:
 
 ```bash 
-$ bin/logstash -f /etc/logstash/conf.d/vulnmod_logstash.conf --config.reload.automatic
+$ /opt/logstash/bin/logstash -f /etc/logstash/conf.d/vulnmod_logstash.conf --config.reload.automatic
 ```
 
 ### Zabbix Discover:
