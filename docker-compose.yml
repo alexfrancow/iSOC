@@ -41,6 +41,7 @@ services:
     environment:
       - ZBX_STARTDISCOVERERS=5
       - ZBX_TIMEOUT=30
+      - ZBX_CACHESIZE=1000M
     ports:
       - 80:80
       - 10051:10051
