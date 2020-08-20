@@ -53,6 +53,28 @@ $ nano docker-compose.yml
       - PUBLIC_HOSTNAME=<IP>
 ```
 
+Test manually the containers:
+
+```
+$ docker-compose up
+Recreating openvas     ... done
+Starting vulnwhisperer ... done
+Starting zabbix        ... done
+Starting elk           ... done
+
+Press Ctrl+C to stop
+
+$ docker ps
+CONTAINER ID        IMAGE                     COMMAND                  CREATED             STATUS
+     PORTS                                                                                        NAMES
+3c8b576943a0        mikesplain/openvas        "/bin/sh -c /start"      50 seconds ago      Up 48 seconds
+     0.0.0.0:443->443/tcp, 0.0.0.0:9390->9390/tcp                                                 openvas 8cb886882bdd        sebp/elk                  "/usr/local/bin/star…"   7 minutes ago       Up 48 seconds
+     0.0.0.0:5044->5044/tcp, 0.0.0.0:5601->5601/tcp, 9300/tcp, 0.0.0.0:9200->9200/tcp, 9600/tcp   elk
+180c993b21ac        zabbix/zabbix-appliance   "/sbin/tini -- /usr/…"   7 minutes ago       Up 49 seconds
+     0.0.0.0:80->80/tcp, 0.0.0.0:10051->10051/tcp, 443/tcp
+
+```
+
 ## Getting started
 
 ```bash
