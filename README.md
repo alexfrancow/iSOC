@@ -43,6 +43,16 @@ $ apt install nmap masscan
 $ sysctl -w vm.max_map_count=262144
 ```
 
+Configure openvas to avoid: "The request contained an unknown or invalid Host header. If you are trying to access GSA via its hostname or a proxy, make sure GSA is set up to allow it." error.
+```
+$ nano docker-compose.yml
+  openvas:
+    image: mikesplain/openvas
+    container_name: openvas
+    environment:
+      - PUBLIC_HOSTNAME=<IP>
+```
+
 ## Getting started
 
 ```bash
