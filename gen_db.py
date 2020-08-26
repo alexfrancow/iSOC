@@ -55,15 +55,15 @@ except FileExistsError as err:
         print('File exists error: {0}', err)
         sys.exit(1)
 
-
+city = config['Common']['city']
 location = config['pgeocode']['location']
+
 nomi = pgeocode.Nominatim(location)
 
 # Servers from GeoLite2
 reader = geoip2.database.Reader('data/maxmind/GeoLite2-City.mmdb')
 
 if not os.path.isfile('ips_arr.txt'):
-	city = config['Common']['city']
 	print("[i] Getting IPs from maxmind database")
 	IPS = hosts_up(city)
 	print(IPS)
