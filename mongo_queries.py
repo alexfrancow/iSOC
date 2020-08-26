@@ -35,7 +35,7 @@ if __name__ == '__main__':
 	'''
 
 	# List 'El Castrillon' servers (only IPs)
-        myquery = { "zip_code": "15009" }
+	myquery = { "zip_code": "15009" }
 	mydoc = collection.find(myquery)
 	count = 0
 	for x in mydoc:
