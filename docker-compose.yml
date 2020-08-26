@@ -1,5 +1,21 @@
 version: '3.7'
 services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    volumes:
+      - ./volumes/mongodb/data/db:/data/db
+      - ./volumes/mongodb/data/log:/var/log/mongodb
+      #- ./volumes/mongodb/mongod.conf:/etc/mongod.conf
+      #- ./volumes/mongodb/initdb.d/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
+    ports:
+      - 27017:27017
+    environment:
+            MONGO_INITDB_ROOT_USERNAME: alexfrancow
+            MONGO_INITDB_ROOT_PASSWORD: abc123
+    #command:
+      #["-f", "/etc/mongod.conf"]
+
   elk:
     image: sebp/elk
     container_name: elk
@@ -27,7 +43,7 @@ services:
     image: mikesplain/openvas
     container_name: openvas
     environment:
-      - PUBLIC_HOSTNAME=192.168.1.13
+      - PUBLIC_HOSTNAME=192.168.1.129
      #- OV_PASSWORD=abc1234.
     ports:
       - 443:443
@@ -41,7 +57,7 @@ services:
     environment:
       - ZBX_STARTDISCOVERERS=5
       - ZBX_TIMEOUT=30
-      - ZBX_CACHESIZE=1000M
+      - ZBX_CACHESIZE=2000M
     ports:
       - 80:80
       - 10051:10051
