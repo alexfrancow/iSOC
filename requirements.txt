@@ -5,7 +5,7 @@ cryptography==2.6.1
 distro-info==0.21        
 entrypoints==0.3         
 geoip2==3.0.0            
-httplib2==0.11.3         
+httplib2==0.18.0         
 idna==2.6                
 keyring==17.1.1          
 keyrings.alt==3.1.1      
