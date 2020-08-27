@@ -239,10 +239,10 @@ zabbix              |    346:20200321:172546.188 discovery rule "46.24.171.21:tc
 
 ### Zabbix zbx_mem_malloc(): out of memory 
 
-My city has a lot of hosts >10805 found and it crashes, you must increase the CacheSize on ZABBIX container with this variable in the "docker-compose.yml":
+My city has a lot of hosts (>20958) found and it crashes, you must increase the CacheSize on ZABBIX container with this variable in the "docker-compose.yml":
 
 ```bash
-ZBX_CACHESIZE=1000M
+ZBX_CACHESIZE=2000M
 ```
 
 ### Zabbix php_value memory_limit
