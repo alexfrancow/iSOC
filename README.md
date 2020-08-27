@@ -220,6 +220,7 @@ client = MongoClient("192.168.1.129",
 ```bash
 $ docker ps
 $ docker logs -f zabbix | grep discover
+line 5: nmap: command not found
 
 # The normal error
 $ docker exec -it zabbix bash
@@ -235,6 +236,28 @@ OK: 346 MiB in 119 packages
 # And
 $ docker logs -f zabbix | grep discover
 zabbix              |    346:20200321:172546.188 discovery rule "46.24.171.21:tcp-discovery.sh[{HOST.CONN}]" became supported
+```
+
+You can save the logs into file editing the ```/etc/zabbix/zabbix_server.conf```:
+
+```bash
+### Option: LogType
+#       Specifies where log messages are written to:
+#               system  - syslog
+#               file    - file specified with LogFile parameter
+#               console - standard output
+#
+# Mandatory: no
+# Default:
+# LogType=console
+LogType=file
+
+### Option: LogFile
+#       Log file name for LogType 'file' parameter.
+#
+# Mandatory: yes, if LogType is set to file, otherwise no
+# Default:
+LogFile=/var/log/zabbix.log
 ```
 
 ### Zabbix zbx_mem_malloc(): out of memory 
