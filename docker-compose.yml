@@ -64,6 +64,7 @@ services:
     volumes:
       - ./resources/zabbix/externalscripts/tcp-discovery.sh:/usr/lib/zabbix/externalscripts/tcp-discovery.sh
       - ./resources/zabbix/externalscripts/openvas.py:/usr/lib/zabbix/externalscripts/openvas.py
+      - ./resources/zabbix/externalscripts/port_to_mongo.py:/usr/lib/zabbix/externalscripts/port_to_mongo.py
       - ./volumes/zabbix/mysql:/var/lib/mysql
 
   vulnwhisperer:

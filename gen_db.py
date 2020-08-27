@@ -44,7 +44,7 @@ for coll in mydb.list_collection_names():
 
 
 # Drop previous collections
-#mycol.drop()
+mycol.drop()
 
 # Read config file.
 config = configparser.ConfigParser()
@@ -92,6 +92,7 @@ else:
 		doc['network'] = response.traits.network.with_prefixlen
 		doc['city'] = response.city.name
 		doc['iso_code'] = response.country.iso_code
+		doc['ports'] = []
 		mongo_docs += [doc]
 
 	result = mycol.insert_many(mongo_docs)

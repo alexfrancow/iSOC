@@ -58,7 +58,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Status of port {#PORT}/{#PROTO} {#SERVICE}</name>
+                            <name>Status of port {#PORT} {#PROTO} {#SERVICE}</name>
                             <type>3</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
@@ -106,7 +106,7 @@
                     <trigger_prototypes>
                         <trigger_prototype>
                             <expression>{Template App Service Ports:net.tcp.service[{#PROTO},,{#PORT}].last()}=1</expression>
-                            <name>Port {#PORT}/{#PROTO} {#SERVICE} is reachable</name>
+                            <name>Status of port {#PORT} {#PROTO} {#SERVICE}</name>
                             <url/>
                             <status>0</status>
                             <priority>2</priority>

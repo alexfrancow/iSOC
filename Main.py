@@ -15,6 +15,7 @@ import threading
 from multiprocessing import Pool
 import concurrent.futures
 from utils import mask_to_hosts, city_range, hosts_up
+from pymongo import MongoClient
 
 from pyzabbix import ZabbixAPI
 import geoip2
@@ -180,7 +181,7 @@ def requirements():
 
 
 def zabbix_requirements():
-	os.system("docker exec zabbix apk update && docker exec zabbix apk add nmap && docker exec zabbix apk add py-pip && docker exec zabbix pip install openvas-lib")
+	os.system("docker exec zabbix apk update && docker exec zabbix apk add nmap && docker exec zabbix apk add py-pip && docker exec zabbix pip install openvas-lib pymongo")
 
 # Read config file.
 config = configparser.ConfigParser()
@@ -218,7 +219,7 @@ while True:
 		pass
 	time.sleep(5)
 
-
+'''
 while True:
 	print("[i] Waiting for kibana to be up..")
 	try:
@@ -231,7 +232,7 @@ while True:
 		pass
 
 	time.sleep(5)
-
+'''
 
 zapi = ZabbixAPI(zabbix_ip)
 zapi.login(zabbix_username, zabbix_password)
@@ -264,4 +265,4 @@ print("[i] Total servidores: ", count)
 
 print("[i] Importing hosts..")
 #IPS = ['192.168.1.13', '217.127.74.13', '217.127.75.235', '217.127.74.95', '217.127.75.110', '217.127.75.107', '217.127.74.86', '217.127.75.189', '217.127.75.186', '217.127.74.248', '217.127.75.77', '217.127.74.143', '217.127.75.126']
-zabbix_create_host_multiple(IPS)
+#zabbix_create_host_multiple(IPS)
