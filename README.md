@@ -245,6 +245,15 @@ My city has a lot of hosts >10805 found and it crashes, you must increase the Ca
 ZBX_CACHESIZE=1000M
 ```
 
+### Zabbix php_value memory_limit
+
+
+``` Fatal error: Allowed memory size of 134217728 bytes exhausted (tried to allocate 20480 bytes) in /usr/share/zabbix/include/classes/api/CRelationMap.php on line 77```
+
+```bash
+ZBX_MEMORYLIMIT=512M
+```
+
 ### Openvas NVT:
 
 ```bash
