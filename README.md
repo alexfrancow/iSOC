@@ -187,7 +187,14 @@ In the "/etc/logstash/conf.d/vulnmod_logstash.conf" file you can add the geoip f
     }
 ```
 
-### Zabbix Discover:
+### Zabbix Disvover (Ports):
+
+There is a script ```resources/zabbix/externalscripts/tcp-discovery.sh``` that can scan the target, to attach this script to any host you must add the host into the ```Template App Service Ports``` template once you get it you will see in the Problems tab the open ports of the host.
+
+There is another script ```resources/zabbix/externalscripts/port_to_mongo.py``` that runs with an action, when the previous script find any port the trigger activate the  ```Port to mongoDB``` action, this script will make a $pull/$push requests to the mongoDB and will add or delete the port.
+
+
+### Zabbix Discover logs:
 
 ```bash
 $ docker ps
