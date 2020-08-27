@@ -247,6 +247,7 @@ ZBX_CACHESIZE=2000M
 
 ### Zabbix php_value memory_limit
 
+Increase the MEMORYLIMIT on ZABBIX container with this variable in the "docker-compose.yml":
 
 ``` Fatal error: Allowed memory size of 134217728 bytes exhausted (tried to allocate 20480 bytes) in /usr/share/zabbix/include/classes/api/CRelationMap.php on line 77```
 
