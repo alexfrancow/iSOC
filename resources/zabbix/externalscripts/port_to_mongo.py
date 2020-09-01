@@ -47,7 +47,7 @@ if args.ip and args.portAdd or args.portDelete:
                         add_ports(collection, x['ip'], portAdd, portProtocol)
 
                 # Get web info
-                if portProtocol == "http":
+                if "http" in portProtocol:
                         req = requests.get("http://"+x['ip']+":"+portAdd, verify=False)
                         collection.update({'ip': x['ip']}, {'$set': {'web_headers': req.headers}})
                         content = str(req.text.encode('utf-8'))
@@ -60,6 +60,6 @@ if args.ip and args.portAdd or args.portDelete:
                         delete_ports(collection, x['ip'], portDelete, portProtocol)
 
                 # Get web info
-                if portProtocol == "http":
+                if "http" in portProtocol:
                         collection.update({'ip': x['ip']}, {'$set': {'web_headers': "Null"}})
                         collection.update({'ip': x['ip']}, {'$set': {'web_payload': "Null"}})
