@@ -198,13 +198,13 @@ There is another script ```resources/zabbix/externalscripts/port_to_mongo.py``` 
 ```bash
 # Add port
 $ python3 port_to_mongo.py -i 213.60.47.175 -pA 'Status of port 80 tcp http'
-$ python3 mongo_queries.py
-{'_id': ObjectId('5f46fcb743f600b9b8dae84c'), 'ip': '213.60.47.175', 'time_added': '27/08/2020', 'host_up': 'Yes', 'zip_code': '15009', 'lat': 42.3749, 'lng': -7.8049, 'place_name': 'A Coruña, Casanova De Eiris, Curramontes, Monserrat (Avenida)', 'network': '213.60.47.0/24', 'city': 'A Coruña', 'iso_code': 'ES', 'ports': ['80']}
+mongodb# db.getCollection('assets').find({'ip':'213.60.47.175'})
+{'_id': ObjectId('5f46fcb743f600b9b8dae84c'), 'ip': '213.60.47.175', 'time_added': '27/08/2020', 'host_up': 'Yes', 'zip_code': '15009', 'lat': 42.3749, 'lng': -7.8049, 'place_name': 'A Coruña, Casanova De Eiris, Curramontes, Monserrat (Avenida)', 'network': '213.60.47.0/24', 'city': 'A Coruña', 'iso_code': 'ES', 'ports': ['80'], 'ports_w_protocol' : {'80' : ['https-alt']}}
 
 # Delete port
 $ python3 port_to_mongo.py -i 213.60.47.175 -pD 'Status of port 80 tcp http'
-$ python3 mongo_queries.py
-{'_id': ObjectId('5f46fcb743f600b9b8dae84c'), 'ip': '213.60.47.175', 'time_added': '27/08/2020', 'host_up': 'Yes', 'zip_code': '15009', 'lat': 42.3749, 'lng': -7.8049, 'place_name': 'A Coruña, Casanova De Eiris, Curramontes, Monserrat (Avenida)', 'network': '213.60.47.0/24', 'city': 'A Coruña', 'iso_code': 'ES', 'ports': []}
+mongodb# db.getCollection('assets').find({'ip':'213.60.47.175'})
+{'_id': ObjectId('5f46fcb743f600b9b8dae84c'), 'ip': '213.60.47.175', 'time_added': '27/08/2020', 'host_up': 'Yes', 'zip_code': '15009', 'lat': 42.3749, 'lng': -7.8049, 'place_name': 'A Coruña, Casanova De Eiris, Curramontes, Monserrat (Avenida)', 'network': '213.60.47.0/24', 'city': 'A Coruña', 'iso_code': 'ES', 'ports': [], 'ports_w_protocol' : {}}
 ```
 
 You must edit the ```port_to_mongo.py``` script and make sure that the mongoDB IP it's correct:
