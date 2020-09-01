@@ -40,7 +40,8 @@ $ pip3 install -r requirements.txt
 # System requirements
 $ apt install nmap masscan
 # Virtual memory to Elasticsearch
-$ sysctl -w vm.max_map_count=262144
+$ sysctl -w vm.max_map_count=262144 or $ echo "vm.max_map_count=262144" >> /etc/sysctl.conf
+
 ```
 
 Configure openvas to avoid: "The request contained an unknown or invalid Host header. If you are trying to access GSA via its hostname or a proxy, make sure GSA is set up to allow it." error.
