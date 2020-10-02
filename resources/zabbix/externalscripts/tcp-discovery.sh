@@ -1,6 +1,8 @@
 #!/bin/bash
 usage(){ echo "Usage: ./$(basename $0) hostname. For example: ./$(basename $0) server1.example.com";}
 if [ -z $1 ]; then usage; exit 1; fi
+/usr/bin/python3 ip-to-elastic.py -i ${1}
+
 IFS=$'\n'
 LIST=$(nmap -T5 -F ${1} | grep 'open')
 if [ -z "$LIST" ]
