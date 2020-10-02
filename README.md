@@ -37,6 +37,7 @@ $ docker-compose --version
 # Python libraries
 $ apt install python3-pip
 $ pip3 install -r requirements.txt
+export PGEOCODE_DATA_DIR=/tmp/pgeocode_data
 # System requirements
 $ apt install nmap masscan
 # Virtual memory to Elasticsearch
