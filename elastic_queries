@@ -1,0 +1,139 @@
+# Search by ip Script
+GET htc/_search
+{
+  "query": {
+    "term": {
+      "ip": "95.62.64.6"
+    }
+  }
+}
+
+
+
+# Search by ip
+GET htc/_search
+{
+  "query": {
+    "term": {
+      "ip": "95.62.64.5"
+    }
+  }
+}
+
+# Add port by ip with conditional
+POST htc/_update_by_query
+{
+  "query": {
+    "term": {
+      "ip": "95.62.64.5"
+    }
+  },
+  "script": {
+    "inline": "int a; a = 0; if(ctx._source.containsKey('ports')){ for(int i=0; i<ctx._source.ports.length; i++) {if(ctx._source.ports[i].containsKey(params.port)){ a=1}} if(a==0){ctx._source.ports.add(params.dict)}} else{ ctx._source.ports = []; ctx._source.ports.add(params.dict)}",
+    "params":{
+      "port" : "21",
+      "dict" : 
+        {"21" : "ftp"}
+      
+    },
+    "lang": "painless"
+  }
+}
+
+
+# Add port by ip
+POST htc/_update_by_query
+{
+  "query": {
+    "term": {
+      "ip": "95.62.64.5"
+    }
+  },
+  "script": {
+    "inline": "if(ctx._source.containsKey('ports')){ ctx._source.ports.add(params.dict)} else{ ctx._source.ports = []; ctx._source.ports.add(params.dict)}",
+    "params":{
+      "dict" : 
+        {"22" : "ssh"}
+      
+    },
+    "lang": "painless"
+  }
+}
+
+# Delete port by ip
+POST htc/_update_by_query
+{
+  "query" : {
+    "term": {
+      "ip" : "95.62.64.5"
+    }
+  },
+  "script" : {
+    "inline":"for(int i=0; i<=ctx._source.ports.length; i++) {if(ctx._source.ports[i].containsKey(params.port)){ctx._source.ports.remove(i);}}",
+    "params":{
+      "port" : "21"
+    },
+    "lang":"painless"
+  }
+}
+
+# Remove all ports by ip
+POST htc/_update_by_query
+{
+  "query" : {
+    "term": {
+      "ip" : "95.62.64.5"
+    }
+  },
+  "script" : {
+    "inline":"for(int i=0; i<=ctx._source.ports.length; i++) {ctx._source.ports.remove(i);}",
+    "lang":"painless"
+  }
+}
+
+# Remove field by ip
+POST htc/_update_by_query
+{
+  "query" : {
+    "term": {
+      "ip" : "95.62.64.5"
+    }
+  },
+  "script" : {
+    "inline":"ctx._source.remove('ports');",
+    "lang":"painless"
+  }
+}
+
+# Seach all
+GET htc/_search
+
+# Show mapping
+GET htc/_mapping
+
+
+
+
+# Geopoints
+PUT htc/_mapping
+{
+  "properties": {
+    "location": {
+      "type": "geo_point"
+    }
+  }
+}
+
+
+PUT case12
+{
+  "mappings": {
+    "doc": {
+      "properties": {
+        "geoip.coordinates": {
+          "type": "geo_point"
+        }
+      }
+    }
+  }
+}
