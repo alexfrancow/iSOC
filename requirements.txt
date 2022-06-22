@@ -10,7 +10,7 @@ idna==2.6
 keyring==17.1.1          
 keyrings.alt==3.1.1      
 maxminddb==1.5.2         
-numpy==1.18.1            
+numpy==1.22.0            
 pandas==1.0.1            
 pgeocode==0.2.1          
 pycrypto==2.6.1          
